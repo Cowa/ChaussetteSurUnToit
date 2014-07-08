@@ -8,7 +8,6 @@
 var game = new Phaser.Game(800, 600, Phaser.AUTO, '', {preload: preload, create: create, update: update});
 
 function preload() {
-
 	game.load.image('night' , 'assets/night.png');
 	game.load.image('roof'  , 'assets/roof.png');
 	game.load.image('fire'  , 'assets/fire.png');
@@ -16,7 +15,6 @@ function preload() {
 }
 
 function create() {
-
 	// Set physics system
 	game.physics.startSystem(Phaser.Physics.ARCADE);
 
@@ -50,7 +48,6 @@ function create() {
 }
 
 function update() {
-
 	// Collision socket vs roof
 	game.physics.arcade.collide(socket, solid);
 
@@ -59,7 +56,6 @@ function update() {
 	if (cursors.left.isDown) {
 		socket.body.velocity.x = -300;
 		socket.animations.play('left');
-
 	} else if (cursors.right.isDown) {
 		socket.body.velocity.x = 300;
 		socket.animations.play('right');
