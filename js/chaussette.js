@@ -8,9 +8,9 @@
 var game = new Phaser.Game(800, 600, Phaser.AUTO, 'socket', {preload: preload, create: create, update: update});
 
 function preload() {
-	game.load.image('night' , 'assets/night.png');
-	game.load.image('roof'  , 'assets/roof.png');
-	game.load.image('fire'  , 'assets/fire.png');
+	game.load.image('night', 'assets/night.png');
+	game.load.image('roof', 'assets/roof.png');
+	game.load.image('fire', 'assets/fire.png');
 	game.load.spritesheet('socket', 'assets/socket.png', 99, 85);
 }
 
@@ -33,7 +33,7 @@ function create() {
 	socket = game.add.sprite(670, 0, 'socket');
 	game.physics.arcade.enable(socket);
 
-	socket.body.gravity.y = 800;
+	socket.body.gravity.y          = 800;
 	socket.body.collideWorldBounds = true;
 
 	socket.animations.add('left' , [0], 10, true);
