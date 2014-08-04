@@ -5,7 +5,7 @@
  * 2014, copyright in the trash
  */
 
-var game = new Phaser.Game(800, 600, Phaser.AUTO, '', {preload: preload, create: create, update: update});
+var game = new Phaser.Game(800, 600, Phaser.AUTO, 'socket', {preload: preload, create: create, update: update});
 
 function preload() {
 	game.load.image('night' , 'assets/night.png');
@@ -38,11 +38,6 @@ function create() {
 
 	socket.animations.add('left' , [0], 10, true);
 	socket.animations.add('right', [1], 10, true);
-
-	game.add.text(5, 0, 'Chaussette sur un toit - le jeu', { fontSize: '16px', fill: '#fff' });
-	game.add.text(740, 550, 'Fin.', { fontSize: '16px', fill: '#fff' });
-	game.add.text(5, 520, 'Code, game design, graphisme,', { fontSize: '16px', fill: '#fff' });
-	game.add.text(5, 550, 'producteur, co-producteur: Moi', { fontSize: '16px', fill: '#fff' });
 
 	cursors = game.input.keyboard.createCursorKeys();
 }
