@@ -23,7 +23,7 @@ function create()
 
 	game.add.sprite(0, 0, 'night');
 
-	solid            = game.add.group();
+	solid = game.add.group();
 	solid.enableBody = true;
 
 	var roof = solid.create(0, game.world.height - 144, 'roof');
@@ -35,15 +35,18 @@ function create()
 	// Creating the sockets
 	sockets = game.add.group();
 
-	cursors    = game.input.keyboard.createCursorKeys();
+	cursors = game.input.keyboard.createCursorKeys();
 	connection = io();
 
-	connection.on('New socket !', function(id) {
-		socket    = sockets.create(670, 0, 'socket');
+	connection.on('New socket', function(id) {
+		socket = sockets.create(670, 0, 'socket');
 		socket.id = id;
+
 		game.physics.arcade.enable(sockets);
+
 		socket.body.gravity.y          = 800;
 		socket.body.collideWorldBounds = true;
+
 		socket.animations.add('left' , [0], 10, true);
 		socket.animations.add('right', [1], 10, true);
 	});
@@ -55,12 +58,21 @@ function create()
 			him.x = hereHeIs.x;
 			him.y = hereHeIs.y;
 		} else {
-			sckt = sockets.create(hereHeIs.x, hereHeIs.y, 'socket');
-			game.physics.arcade.enable(sockets);
-			sckt.body.gravity.y          = 800;
-			sckt.body.collideWorldBounds = true;
+			newSocket = sockets.create(hereHeIs.x, hereHeIs.y, 'socket');
 
-			everySockets[hereHeIs.id] = sckt;
+			game.physics.arcade.enable(sockets);
+
+			newSocket.body.gravity.y = 800;
+			newSocket.body.collideWorldBounds = true;
+
+			everySockets[hereHeIs.id] = newSocket;
+		}
+	});
+
+	connection.on('Bye bye sockets', function(id) {
+		var him = everySockets[id];
+		if (him) {
+			sockets.remove(him);
 		}
 	});
 }
@@ -75,7 +87,7 @@ function update()
 	// Optimization
 	var toBeUpdated = false;
 
-	// Collision socket vs roof
+	// Collision sockets vs roof
 	game.physics.arcade.collide(sockets, solid);
 
 	socket.body.velocity.x = 0;
@@ -102,8 +114,6 @@ function update()
 	}
 
 	if (toBeUpdated) {
-		console.log('oui');
 		connection.emit('Here I am', {x: socket.body.x, y: socket.body.y, id: socket.id});
 	}
 }
-

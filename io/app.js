@@ -15,10 +15,13 @@ app
 })
 
 io.sockets.on('connection', function(socket) {
-	socket.emit('New socket !', socket.id);
+	socket.emit('New socket', socket.id);
+
+	socket.on('disconnect', function() {
+		socket.broadcast.emit('Bye bye sockets', socket.id);
+	});
 
 	socket.on('Here I am', function(hereHeIs) {
-		//console.log(hereHeIs);
 		socket.broadcast.emit('Here he is', hereHeIs);
 	});
 });
