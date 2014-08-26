@@ -21,4 +21,4 @@ And the fun begins at your ```localhost:8080```
 About
 -----
 
-An unique multiplayer game with socket**s**... on a roof
+An unique multiplayer game with sockets... on a roof
