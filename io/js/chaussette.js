@@ -44,29 +44,21 @@ function create()
 
 		game.physics.arcade.enable(sockets);
 
-		socket.body.gravity.y          = 800;
+		socket.body.gravity.y = 800;
 		socket.body.collideWorldBounds = true;
 
 		socket.animations.add('left' , [0], 10, true);
 		socket.animations.add('right', [1], 10, true);
+
+		connection.emit('Hi sockets');
+	});
+
+	connection.on('Welcome new socket', function() {
+		connection.emit('Here I am', {x: socket.body.x, y: socket.body.y, id: socket.id});
 	});
 
 	connection.on('Here he is', function(hereHeIs) {
-		var him = everySockets[hereHeIs.id];
-
-		if (him) {
-			him.x = hereHeIs.x;
-			him.y = hereHeIs.y;
-		} else {
-			newSocket = sockets.create(hereHeIs.x, hereHeIs.y, 'socket');
-
-			game.physics.arcade.enable(sockets);
-
-			newSocket.body.gravity.y = 800;
-			newSocket.body.collideWorldBounds = true;
-
-			everySockets[hereHeIs.id] = newSocket;
-		}
+		tellMyPosition(hereHeIs);
 	});
 
 	connection.on('Bye bye sockets', function(id) {
@@ -115,5 +107,24 @@ function update()
 
 	if (toBeUpdated) {
 		connection.emit('Here I am', {x: socket.body.x, y: socket.body.y, id: socket.id});
+	}
+}
+
+function tellMyPosition(hereHeIs)
+{
+	var him = everySockets[hereHeIs.id];
+
+	if (him) {
+		him.x = hereHeIs.x;
+		him.y = hereHeIs.y;
+	} else {
+		newSocket = sockets.create(hereHeIs.x, hereHeIs.y, 'socket');
+
+		game.physics.arcade.enable(sockets);
+
+		newSocket.body.gravity.y = 800;
+		newSocket.body.collideWorldBounds = true;
+
+		everySockets[hereHeIs.id] = newSocket;
 	}
 }

@@ -17,6 +17,10 @@ app
 io.sockets.on('connection', function(socket) {
 	socket.emit('New socket', socket.id);
 
+	socket.on('Hi sockets', function() {
+		socket.broadcast.emit('Welcome new socket');
+	});
+
 	socket.on('disconnect', function() {
 		socket.broadcast.emit('Bye bye sockets', socket.id);
 	});
