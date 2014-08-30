@@ -1,6 +1,6 @@
 /**
- * Chaussette sur un toit (Socket on a roof)
- * A none io game
+ * Chaussette.IO sur un toit (Socket.IO on a roof)
+ * A none IO game
  *
  * 2014
  */
@@ -32,12 +32,16 @@ function create()
 	var fire = solid.create(game.world.width - 130, game.world.height - 330, 'fire');
 	fire.body.immovable = true;
 
-	// Creating the sockets
+	// Creat the sockets group
 	sockets = game.add.group();
 
+	// Set up keyboard
 	cursors = game.input.keyboard.createCursorKeys();
+
+	// Socket.IO in da place \o/
 	connection = io();
 
+	// Create the socket player
 	connection.on('New socket', function(id) {
 		socket = sockets.create(670, 0, 'socket');
 		socket.id = id;
@@ -50,17 +54,21 @@ function create()
 		socket.animations.add('left' , [0], 10, true);
 		socket.animations.add('right', [1], 10, true);
 
+		// Tell other sockets you're new
 		connection.emit('Hi sockets');
 	});
 
+	// Welcome new sockets by telling where you are
 	connection.on('Welcome new socket', function() {
 		connection.emit('Here I am', {x: socket.body.x, y: socket.body.y, id: socket.id});
 	});
 
+	// Tell you where sockets are
 	connection.on('Here he is', function(hereHeIs) {
-		tellMyPosition(hereHeIs);
+		updatePosition(hereHeIs);
 	});
 
+	// A socket leaves the roof :(
 	connection.on('Bye bye sockets', function(id) {
 		var him = everySockets[id];
 		if (him) {
@@ -106,11 +114,12 @@ function update()
 	}
 
 	if (toBeUpdated) {
+		// Tell other sockets where you are
 		connection.emit('Here I am', {x: socket.body.x, y: socket.body.y, id: socket.id});
 	}
 }
 
-function tellMyPosition(hereHeIs)
+function updatePosition(hereHeIs)
 {
 	var him = everySockets[hereHeIs.id];
 
