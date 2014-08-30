@@ -32,7 +32,7 @@ function create()
 	var fire = solid.create(game.world.width - 130, game.world.height - 330, 'fire');
 	fire.body.immovable = true;
 
-	// Creat the sockets group
+	// Create the sockets group
 	sockets = game.add.group();
 
 	// Set up keyboard
