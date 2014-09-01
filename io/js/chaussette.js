@@ -45,6 +45,7 @@ function create()
 	connection.on('New socket', function(id) {
 		socket = sockets.create(670, 0, 'socket');
 		socket.id = id;
+		socket.status = 'right';
 
 		game.physics.arcade.enable(sockets);
 
@@ -95,10 +96,12 @@ function update()
 	if (cursors.left.isDown) {
 		socket.body.velocity.x = -300;
 		socket.animations.play('left');
+		socket.status = 'left';
 		toBeUpdated = true;
 	} else if (cursors.right.isDown) {
 		socket.body.velocity.x = 300;
 		socket.animations.play('right');
+		socket.status = 'right';
 		toBeUpdated = true;
 	} else {
 		socket.animations.stop();
@@ -115,7 +118,7 @@ function update()
 
 	if (toBeUpdated) {
 		// Tell other sockets where you are
-		connection.emit('Here I am', {x: socket.body.x, y: socket.body.y, id: socket.id});
+		connection.emit('Here I am', {x: socket.body.x, y: socket.body.y, id: socket.id, status: socket.status});
 	}
 }
 
@@ -126,6 +129,7 @@ function updatePosition(hereHeIs)
 	if (him) {
 		him.x = hereHeIs.x;
 		him.y = hereHeIs.y;
+		him.animations.play(hereHeIs.status);
 	} else {
 		newSocket = sockets.create(hereHeIs.x, hereHeIs.y, 'socket');
 
@@ -133,6 +137,9 @@ function updatePosition(hereHeIs)
 
 		newSocket.body.gravity.y = 800;
 		newSocket.body.collideWorldBounds = true;
+
+		newSocket.animations.add('left' , [0], 10, true);
+		newSocket.animations.add('right', [1], 10, true);
 
 		everySockets[hereHeIs.id] = newSocket;
 	}
