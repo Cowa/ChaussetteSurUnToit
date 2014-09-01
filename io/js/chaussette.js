@@ -61,7 +61,7 @@ function create()
 
 	// Welcome new sockets by telling where you are
 	connection.on('Welcome new socket', function() {
-		connection.emit('Here I am', {x: socket.body.x, y: socket.body.y, id: socket.id});
+		connection.emit('Here I am', {x: socket.body.x, y: socket.body.y, id: socket.id, status: socket.status});
 	});
 
 	// Tell you where sockets are
@@ -140,6 +140,7 @@ function updatePosition(hereHeIs)
 
 		newSocket.animations.add('left' , [0], 10, true);
 		newSocket.animations.add('right', [1], 10, true);
+		newSocket.animations.play(hereHeIs.status);
 
 		everySockets[hereHeIs.id] = newSocket;
 	}
