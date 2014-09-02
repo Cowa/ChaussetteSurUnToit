@@ -47,6 +47,9 @@ function create()
 		socket.id = id;
 		socket.status = 'right';
 
+		// Tint the socket
+		pimpMySocket(socket);
+
 		game.physics.arcade.enable(sockets);
 
 		socket.body.gravity.y = 800;
@@ -61,7 +64,7 @@ function create()
 
 	// Welcome new sockets by telling where you are
 	connection.on('Welcome new socket', function() {
-		connection.emit('Here I am', {x: socket.body.x, y: socket.body.y, id: socket.id, status: socket.status});
+		connection.emit('Here I am', {x: socket.body.x, y: socket.body.y, id: socket.id, status: socket.status, tint: socket.tint});
 	});
 
 	// Tell you where sockets are
@@ -118,7 +121,7 @@ function update()
 
 	if (toBeUpdated) {
 		// Tell other sockets where you are
-		connection.emit('Here I am', {x: socket.body.x, y: socket.body.y, id: socket.id, status: socket.status});
+		connection.emit('Here I am', {x: socket.body.x, y: socket.body.y, id: socket.id, status: socket.status, tint: socket.tint});
 	}
 }
 
@@ -132,6 +135,7 @@ function updatePosition(hereHeIs)
 		him.animations.play(hereHeIs.status);
 	} else {
 		newSocket = sockets.create(hereHeIs.x, hereHeIs.y, 'socket');
+		newSocket.tint = hereHeIs.tint;
 
 		game.physics.arcade.enable(sockets);
 
@@ -144,4 +148,14 @@ function updatePosition(hereHeIs)
 
 		everySockets[hereHeIs.id] = newSocket;
 	}
+}
+
+// Tint a socket randomly
+function pimpMySocket(socket) {
+	var r = Math.floor((Math.random() * 255) + 1) - 1,
+	    g = Math.floor((Math.random() * 255) + 1) - 1,
+	    b = Math.floor((Math.random() * 255) + 1) - 1;
+
+	// Convert RGB to Hex
+	socket.tint = r << 16 | g << 8 | b;
 }
