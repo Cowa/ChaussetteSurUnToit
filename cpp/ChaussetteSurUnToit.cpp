@@ -61,6 +61,5 @@ void ChaussetteSurUnToit::handleEvent(Event *e)
 
 bool ChaussetteSurUnToit::Update()
 {
-
 	return core_->updateAndRender();
 }
