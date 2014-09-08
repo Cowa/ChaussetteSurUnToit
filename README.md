@@ -30,7 +30,7 @@ I wanna play!
 
 You can play the game [here](http://socketsio.herokuapp.com/)
 
-**Please** note that it's currently hosted on a free server, other sockets can be laggy, but the fun always remains \o/
+**Please** note that it's currently hosted on a free server, other sockets can be laggy, but the fun always remains **\o/**
 
 Powered by
 ----------

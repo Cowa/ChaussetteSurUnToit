@@ -13,6 +13,6 @@ Edition
 
 An awesome game with several editions
 
-- Phaser.js, JS edition (see ```js/``` folder)
-- Polycode, C++ edition (see ```cpp/``` folder)
-- Löve 2D, Lua edition (see ```lua/``` folder) 
+- **Phaser.js**, JS edition (see ```js/``` folder)
+- **Polycode**, C++ edition (see ```cpp/``` folder)
+- **Löve 2D**, Lua edition (see ```lua/``` folder) 
