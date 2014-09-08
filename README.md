@@ -1,28 +1,38 @@
-Chaussette sur un toit
-======================
+Chaussette.IO sur un toit
+=========================
 
-*Socket on a roof*
+*Socket.IO on a roof*, multiplayer edition
 
 Project by **Brice Thomas**, 2014
 
 ![screen](http://verticale.me/chaussette/socketonaroof.png)
 
-Story
+About
 -----
 
-This is the story of a socket on a roof.
+An unique multiplayer game with sockets... on a roof
 
-I wanna play!
---------------
-
-Play the classic edition [here](http://verticale.me/chaussette/).
-
-Edition
+Install
 -------
 
-An awesome game with several editions
+Inside this folder
 
-- Phaser.js, classic edition
-- Phaser.js + Socket.IO, multiplayer edition (see ```io/``` folder)
-- Polycode, C++ edition (see ```cpp``` folder)
-- Löve, Lua edition (see ```lua/``` folder) 
+```npm install```
+
+Once dependencies are installed, run the server
+
+```node app.js```
+
+And the fun begins at your ```localhost:8080```
+
+I wanna play!
+-------------
+
+You can play the game [here](http://socketsio.herokuapp.com/)
+
+**Please** note that it's currently hosted on a free server, other sockets can be laggy, but the fun always remains **\o/**
+
+Powered by
+----------
+
+Phaser.js, Node.js, Express & Socket.IO
