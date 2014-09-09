@@ -133,6 +133,7 @@ function updatePosition(hereHeIs)
 		him.x = hereHeIs.x;
 		him.y = hereHeIs.y;
 		him.animations.play(hereHeIs.status);
+		him.tint = hereHeIs.tint;
 	} else {
 		newSocket = sockets.create(hereHeIs.x, hereHeIs.y, 'socket');
 		newSocket.tint = hereHeIs.tint;
