@@ -36,3 +36,10 @@ Powered by
 ----------
 
 Phaser.js, Node.js, Express & Socket.IO
+
+Credits
+-------
+
+- Marie *M*, original title creator
+
+- Olivia *B*, knowledge transductor
