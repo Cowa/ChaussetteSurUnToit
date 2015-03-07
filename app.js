@@ -1,33 +1,33 @@
-var express = require('express'),
-    http    = require('http'),
-    sio     = require('socket.io');
+var express = require('express');
+var http = require('http');
+var sio = require('socket.io');
 
-var app     = express(),
-    server  = http.createServer(app),
-    io      = sio.listen(server),
-    port    = 8080;
+var app = express();
+var server = http.createServer(app);
+var io = sio.listen(server);
+var port = process.env.PORT || 8080;
 
 app
-.use('/js', express.static(__dirname + '/js'))
-.use('/assets', express.static(__dirname + '/assets'))
-.get('/', function(req, res) {
-	res.sendfile(__dirname + '/index.html');
-})
+  .use('/js', express.static(__dirname + '/js'))
+  .use('/assets', express.static(__dirname + '/assets'))
+  .get('/', function(req, res) {
+    res.sendfile(__dirname + '/index.html');
+  });
 
 io.sockets.on('connection', function(socket) {
-	socket.emit('New socket', socket.id);
+  socket.emit('New socket', socket.id);
 
-	socket.on('Hi sockets', function() {
-		socket.broadcast.emit('Welcome new socket');
-	});
+  socket.on('Hi sockets', function() {
+    socket.broadcast.emit('Welcome new socket');
+  });
 
-	socket.on('disconnect', function() {
-		socket.broadcast.emit('Bye bye sockets', socket.id);
-	});
+  socket.on('disconnect', function() {
+    socket.broadcast.emit('Bye bye sockets', socket.id);
+  });
 
-	socket.on('Here I am', function(hereHeIs) {
-		socket.broadcast.emit('Here he is', hereHeIs);
-	});
+  socket.on('Here I am', function(hereHeIs) {
+    socket.broadcast.emit('Here he is', hereHeIs);
+  });
 });
 
 server.listen(port);
