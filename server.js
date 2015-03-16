@@ -9,6 +9,7 @@ var port = process.env.PORT || 8080;
 
 app
   .use('/js', express.static(__dirname + '/public/js'))
+  .use('/css', express.static(__dirname + '/public/css'))
   .use('/assets', express.static(__dirname + '/public/assets'))
   .use('/templates', express.static(__dirname + '/public/templates'))
   .get('/', function(req, res) {

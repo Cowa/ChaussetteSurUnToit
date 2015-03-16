@@ -30,10 +30,10 @@ function create() {
   cursors = game.input.keyboard.createCursorKeys();
 
   // Socket.IO in da place \o/
-  connection = io();
+  socketIO = io();
 
   // Create the socket player
-  connection.on('New socket', function(id) {
+  socketIO.on('New socket', function(id) {
     socket = sockets.create(670, 0, 'socket');
     socket.id = id;
     socket.status = 'right';
@@ -50,12 +50,12 @@ function create() {
     socket.animations.add('right', [1], 10, true);
 
     // Tell other sockets you're new
-    connection.emit('Hi, I\'m new :)');
+    socketIO.emit('Hi, I\'m new :)');
   });
 
   // Welcome new sockets by telling where you are
-  connection.on('Welcome new socket', function() {
-    connection.emit('Here I am', {
+  socketIO.on('Welcome new socket', function() {
+    socketIO.emit('Here I am', {
       x: socket.body.x,
       y: socket.body.y,
       id: socket.id,
@@ -65,12 +65,12 @@ function create() {
   });
 
   // Tell you where sockets are
-  connection.on('Here he is', function(hereHeIs) {
+  socketIO.on('Here he is', function(hereHeIs) {
     updatePosition(hereHeIs);
   });
 
   // A socket leaves the roof :( #sad
-  connection.on('Bye bye sockets :(', function(id) {
+  socketIO.on('Bye bye sockets :(', function(id) {
     var him = everySockets[id];
     if (him) {
       sockets.remove(him);
@@ -117,7 +117,7 @@ function update() {
 
   if (toBeUpdated) {
     // Tell other sockets where you are
-    connection.emit('Here I am', {
+    socketIO.emit('Here I am', {
       x: socket.body.x,
       y: socket.body.y,
       id: socket.id,

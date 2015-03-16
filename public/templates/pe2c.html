@@ -2,7 +2,12 @@
   <h4>PressEnter-to-Chat</h4>
   <img src="assets/pressEnter-to-chat-avatar.png"/>
 </div>
+
 <div ng-show="enterPressed" class="pressEnter-to-chat">
-  <h4>Chattt</h4>
-  <img src="assets/pressEnter-to-chat-avatar.png"/>
+  <h4>PressEscape-to-QuitChat</h4>
+  <div class="chat-history">
+    <p ng-repeat="chat in history">{{chat}}</p>
+  </div>
+
+  <textarea></textarea>
 </div>

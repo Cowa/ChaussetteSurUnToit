@@ -3,33 +3,13 @@
 <head>
   <title>Chaussette.IO sur un toit</title>
   <meta charset="utf-8" />
+  <link rel="stylesheet" href="css/main.css"/>
+  <link rel="stylesheet" href="css/pressEnter-to-chat.css"/>
   <script src="/socket.io/socket.io.js"></script>
   <script src="js/vendors/phaser.min.js"></script>
-  <script src="js/chaussette.js"></script>
+  <script src="js/socket.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
   <script src="js/pressEnter-to-chat.js"></script>
-
-  <style>
-    body {
-      background: #000; color: #fff; font-family: monospace;
-    } * {
-      margin: 0; text-align: center;
-    } #socket canvas {
-      display: block; margin: auto; max-width: 70%;
-    } a, strong {
-      color: #5eaa63; text-decoration: none;
-    } h4, p {
-      margin-bottom: 10px;
-    } h1, p {
-      margin-top: 10px;
-    } .pressEnter-to-chat {
-      border: 2px solid white;
-      background-color: #5eaa63;
-      position: fixed;
-      bottom: 0;
-      right: 0;
-    }
-  </style>
 </head>
 <body ng-app="pe2c" ng-controller="Ctrl" ng-keydown="onKeyDown($event)">
   <h1>Chaussette<strong>.IO</strong> sur un toit</h1>
@@ -38,6 +18,6 @@
   <p>Please, use ←↑→ to move your socket</p>
   <p>Code, game design, graphics, producer &amp; co-producer: <a href="https://github.com/Cowa" target="_blank">Cowa</a></p>
 
-  <pe2c/>
+  <pe2c data="history"/>
 </body>
 </html>
