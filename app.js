@@ -8,11 +8,11 @@ var io = sio.listen(server);
 var port = process.env.PORT || 8080;
 
 app
-  .use('/js', express.static(__dirname + '/js'))
-  .use('/assets', express.static(__dirname + '/assets'))
-  .use('/templates', express.static(__dirname + '/templates'))
+  .use('/js', express.static(__dirname + '/public/js'))
+  .use('/assets', express.static(__dirname + '/public/assets'))
+  .use('/templates', express.static(__dirname + '/public/templates'))
   .get('/', function(req, res) {
-    res.sendfile(__dirname + '/index.html');
+    res.sendfile(__dirname + '/public/index.html');
   });
 
 io.sockets.on('connection', function(socket) {
