@@ -152,12 +152,14 @@ function updatePosition(hereHeIs) {
   }
 }
 
-// Tint a socket randomly
-function pimpMySocket(socket) {
-  var r = Math.floor((Math.random() * 255) + 1) - 1;
-  var g = Math.floor((Math.random() * 255) + 1) - 1;
-  var b = Math.floor((Math.random() * 255) + 1) - 1;
+// Tint a socket randomly or with the given colors
+function pimpMySocket(socket, r, g, b) {
+  var red = ((r || r >= 0) && r < 256) ? r : Math.floor((Math.random() * 255) + 1) - 1;
+  var green = ((g || g >= 0) && g < 256) ? g : Math.floor((Math.random() * 255) + 1) - 1;
+  var blue = ((b || b >= 0) && b < 256) ? b : Math.floor((Math.random() * 255) + 1) - 1;
 
   // Convert RGB to Hex
-  socket.tint = r << 16 | g << 8 | b;
+  socket.tint = red << 16 | green << 8 | blue;
+
+  return socket.tint;
 }
