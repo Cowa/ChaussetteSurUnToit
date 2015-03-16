@@ -1,6 +1,6 @@
 {
    "name": "Chaussette.IO",
-   "main": "app.js",
+   "main": "server.js",
    "version": "0.1.0",
    "author": "Brice Thomas",
    "dependencies": {
