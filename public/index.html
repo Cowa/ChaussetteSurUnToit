@@ -19,6 +19,14 @@
   <script src="js/vendors/phaser.min.js"></script>
   <script src="/socket.io/socket.io.js"></script>
   <script src="js/socket.js"></script>
-  <script>riot.mount('pe2c')</script>
+  <script>
+    var emitter = riot.observable()
+
+    document.getElementsByTagName('body')[0].onkeyup = function(e) {
+      emitter.trigger('keyPressed', e)
+    }
+
+    riot.mount('pe2c', emitter)
+  </script>
 </body>
 </html>

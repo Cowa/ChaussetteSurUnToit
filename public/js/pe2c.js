@@ -1,10 +1,10 @@
 <pe2c>
-  <div if={ !enterPressed } class="pe2c">
+  <div if={ !showChat } class="pe2c">
     <h4>PressEnter-to-Chat</h4>
     <img src="assets/pe2c-avatar.png"/>
   </div>
 
-  <div if={ enterPressed } class="pe2c">
+  <div if={ showChat } class="pe2c">
     <h4>PressEscape-to-QuitChat</h4>
     <div class="chat-history">
       <p each={ chat in history }>{ chat.socket }: "{ chat.msg }"</p>
@@ -29,9 +29,9 @@
   </style>
 
   <script>
-    var self = this;
-    self.enterPressed = false;
-    self.history = [
+    var self = this
+    this.showChat = false
+    this.history = [
       {socket: '#5EAA63', msg: 'So wow socket!'},
       {socket: '#5EAA67', msg: 'So wow socket!'},
       {socket: '#5EAA67', msg: 'So wow socket!'},
@@ -47,19 +47,17 @@
       {socket: '#5EAA67', msg: 'So wow socket!'},
       {socket: '#5EAA67', msg: 'So wow socket!'},
       {socket: '#5EAA67', msg: 'So wow socket!'}
-    ];
+    ]
 
-    document.getElementsByTagName('body')[0].onkeyup = function(e) {
-      if (e.keyCode == 13 && !self.enterPressed) {
-        console.log(self.enterPressed)
-        self.enterPressed = true;
-        console.log(self.enterPressed)
+    opts.on('keyPressed', function(e) {
+      if (e.keyCode == 13 && !self.showChat) {
+        self.showChat = true
+        self.update()
       }
-      else if (e.keyCode == 27 && self.enterPressed) {
-        console.log(self.enterPressed)
-        self.enterPressed = false;
-        console.log(self.enterPressed)
+      else if (e.keyCode == 27 && self.showChat) {
+        self.showChat = false
+        self.update()
       }
-    };
+    })
   </script>
 </pe2c>
