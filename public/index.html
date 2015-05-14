@@ -18,15 +18,16 @@
   <script src="js/pe2c.js" type="riot/tag"></script>
   <script src="js/vendors/phaser.min.js"></script>
   <script src="/socket.io/socket.io.js"></script>
+  <script>socketIO = io();</script>
   <script src="js/socket.js"></script>
   <script>
-    var emitter = riot.observable()
+    var emitter = riot.observable();
 
     document.getElementsByTagName('body')[0].onkeyup = function(e) {
-      emitter.trigger('keyPressed', e)
+      emitter.trigger('keyPressed', e);
     }
 
-    riot.mount('pe2c', emitter)
+    riot.mount('pe2c', emitter);
   </script>
 </body>
 </html>

@@ -17,7 +17,9 @@ app
   });
 
 io.sockets.on('connection', function(socket) {
-  socket.emit('New socket', socket.id);
+  socket.on('I\'m ready to be a socket!', function() {
+    socket.emit('New socket', socket.id);
+  })
 
   socket.on('Hi, I\'m new :)', function() {
     socket.broadcast.emit('Welcome new socket');

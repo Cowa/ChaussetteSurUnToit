@@ -29,8 +29,8 @@ function create() {
   // Set up keyboard
   cursors = game.input.keyboard.createCursorKeys();
 
-  // Socket.IO in da place \o/
-  socketIO = io();
+  // Ready to play! Yayyy
+  socketIO.emit('I\'m ready to be a socket!');
 
   // Create the socket player
   socketIO.on('New socket', function(id) {

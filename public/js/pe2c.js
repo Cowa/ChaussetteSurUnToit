@@ -10,7 +10,8 @@
       <p each={ chat in history }>{ chat.socket }: "{ chat.msg }"</p>
     </div>
 
-    <textarea></textarea>
+    <textarea class="write"></textarea>
+    <a class="send"></a>
   </div>
 
   <style>
@@ -24,8 +25,51 @@
 
     .chat-history {
       width: 340px;
+      height: 250px;
       background-color: #161616;
+      overflow-y: auto;
     }
+
+    .write {
+      background: black;
+      color: white;
+      font-family: monospace;
+      text-align: left;
+      width: 265px;
+      max-width: 265px;
+      height: 33px;
+
+      -webkit-border-radius: 20px;
+      -moz-border-radius: 20px;
+      border-radius: 5px;
+    }
+
+    .send:after {
+      background: black;
+      color: #fff;
+      content: ">";
+      float: right;
+      font: bold 18px monospace;
+      line-height: 37px;
+      margin-right: 10px;
+      margin-bottom: 15px;
+      text-align: center;
+      width: 35px;
+      height: 35px;
+
+      border-style: solid;
+      border-color: white;
+      border-width: 2px;
+
+      -webkit-border-radius: 20px;
+      -moz-border-radius: 20px;
+      border-radius: 20px;
+    }
+
+    .send:hover {
+      cursor: pointer;
+    }
+
   </style>
 
   <script>
