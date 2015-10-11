@@ -1,0 +1,30 @@
+* {
+  margin: 0;
+  text-align: center;
+}
+
+body {
+  background: #000;
+  color: #fff;
+  font-family: monospace;
+}
+
+#socket canvas {
+  display: block;
+  margin: auto;
+  min-width: 800px;
+  min-height: 600px;
+}
+
+a, strong {
+  color: #5eaa63;
+  text-decoration: none;
+}
+
+h4, p {
+  margin-bottom: 10px;
+}
+
+h1, p {
+  margin-top: 10px;
+}
