@@ -12,22 +12,9 @@
   <p>Please, use ←↑→ to move your socket</p>
   <p>Code, game design, graphics, producer &amp; co-producer: <a href="https://github.com/Cowa" target="_blank">Cowa</a></p>
 
-  <pe2c></pe2c>
-
-  <script src="https://cdn.jsdelivr.net/g/riot@2.0(riot.min.js+compiler.min.js)"></script>
-  <script src="js/pe2c.js" type="riot/tag"></script>
   <script src="js/vendors/phaser.min.js"></script>
   <script src="/socket.io/socket.io.js"></script>
   <script>socketIO = io();</script>
   <script src="js/socket.js"></script>
-  <script>
-    var emitter = riot.observable();
-
-    document.getElementsByTagName('body')[0].onkeyup = function(e) {
-      emitter.trigger('keyPressed', e);
-    }
-
-    riot.mount('pe2c', emitter);
-  </script>
 </body>
 </html>
