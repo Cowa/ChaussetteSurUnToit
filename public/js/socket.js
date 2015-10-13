@@ -160,6 +160,4 @@ function pimpMySocket(socket, r, g, b) {
 
   // Convert RGB to Hex
   socket.tint = red << 16 | green << 8 | blue;
-
-  return socket.tint;
 }
